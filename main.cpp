@@ -7,7 +7,7 @@ using std::cin;
 
 int main()
 {
-	int size = 5;
+	const int size = 5;
 	unsigned long long length[size];
 	unsigned long long result = 0;
 
