@@ -7,7 +7,8 @@ using std::cin;
 
 int main()
 {
-	unsigned long long income[6];
+	const unsigned int size = 6;
+	unsigned long long income[size];
 	unsigned long long result = 0;
 
 	for (int i = 0; i <= 5; i++) {
