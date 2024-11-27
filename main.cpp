@@ -8,6 +8,7 @@ using std::cin;
 using std::random_device;
 using std::mt19937;
 using std::uniform_int_distribution;
+using std::pair;
 
 int _max(long long* list, int size)
 {
@@ -43,25 +44,55 @@ int _min(long long* list, int size)
 	return index;
 }
 
+pair<unsigned long long, int> _negative_numbers_finder(long long* list, int size)
+{
+	unsigned long long max = list[0];
+	int first_index = -1;
+	int last_index = -1;
+
+	for (int i = 1; i <= 11; i++)
+	{
+		if (list[i] >= max)
+		{
+			max = list[i];
+
+		}
+	}
+
+	return { first_index, last_index };
+}
 
 int main()
 {
+	// init
 	const unsigned int size = 10;
 	long long list[size];
+	long long value;
 
 	long long sum_of_negative_numbers = 0;
 	long long product_min_btw_max = 1;
 	long long product_even_indexes = 1;
+	long long sum_first_btw_last_negative = 0;
 
+	// random
 	random_device rd;
 	mt19937 gen(rd());
 	uniform_int_distribution<> dist(-10, 10);
 
+	// array generation
 	cout << "Array: ";
 
 	for (int i = 0; i <= 9; i++)
 	{
-		list[i] = dist(rd);
+		 value = dist(rd);
+
+		 if (value == 0)
+		 {
+			 continue;
+		 }
+
+		 list[i] = value;
+
 		cout << list[i] << " ";
 
 		if (list[i] < 0)
@@ -70,8 +101,18 @@ int main()
 		}
 	}
 
-	long long max_number_index = _max(list, size);
+	// first, second and third task
 	long long min_number_index = _min(list, size);
+	long long max_number_index = _max(list, size);
+
+	if (max_number_index < min_number_index)
+	{
+		int temp = max_number_index;
+		max_number_index = min_number_index;
+		min_number_index = temp;
+	}
+	
+	cout << endl << min_number_index << " " << max_number_index << endl;
 
 	for (int i = min_number_index; i <= max_number_index; i++)
 	{
@@ -83,11 +124,17 @@ int main()
 		product_even_indexes *= list[i];
 	}
 
+	// fourth task
+	pair<unsigned long long, int> negative_numbers_indexes = _negative_numbers_finder(list, size);
+
+	// cout
 	cout << endl << endl;
 	cout << "The sum of negative numbers: " << sum_of_negative_numbers << endl;
 	cout << "Product of elements that are between min and max elements: " << product_min_btw_max << endl;
 	cout << "Product of elements with even numbers: " << product_even_indexes << endl;
+	cout << "Sum of the elements between the first and last negative elements: " << sum_first_btw_last_negative << endl;
 
+	// defult
 	_getch();
 	return 0;
 }
