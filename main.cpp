@@ -46,16 +46,22 @@ int _min(long long* list, int size)
 
 pair<unsigned long long, int> _negative_numbers_finder(long long* list, int size)
 {
-	unsigned long long max = list[0];
+	unsigned long long number = list[0];
 	int first_index = -1;
 	int last_index = -1;
 
-	for (int i = 1; i <= 11; i++)
-	{
-		if (list[i] >= max)
+	for (int i = 0; i <= size; i++)
+	{	
+		if (list[i] < 0)
 		{
-			max = list[i];
+			if (first_index < 0)
+			{
+				first_index = i;
+				
+				continue;
+			}
 
+			last_index = i;
 		}
 	}
 
@@ -82,7 +88,7 @@ int main()
 	// array generation
 	cout << "Array: ";
 
-	for (int i = 0; i <= 9; i++)
+	for (int i = 0; i <= size; i++)
 	{
 		 value = dist(rd);
 
@@ -112,14 +118,13 @@ int main()
 		min_number_index = temp;
 	}
 	
-	cout << endl << min_number_index << " " << max_number_index << endl;
 
-	for (int i = min_number_index; i <= max_number_index; i++)
+	for (int i = min_number_index + 1; i < max_number_index; i++)
 	{
 		product_min_btw_max *= list[i];
 	}
 
-	for (int i = 0; i < size; i += 2)
+	for (int i = 0; i <= size; i += 2)
 	{
 		product_even_indexes *= list[i];
 	}
@@ -127,7 +132,17 @@ int main()
 	// fourth task
 	pair<unsigned long long, int> negative_numbers_indexes = _negative_numbers_finder(list, size);
 
+	cout << endl << endl;
+	
+	for (int i = negative_numbers_indexes.first + 1; i < negative_numbers_indexes.second; i++)
+	{
+		sum_first_btw_last_negative += list[i];
+	}
+
 	// cout
+	/*cout << endl << min_number_index << " " << max_number_index << endl;
+	*/cout << negative_numbers_indexes.first << " " << negative_numbers_indexes.second << endl;
+
 	cout << endl << endl;
 	cout << "The sum of negative numbers: " << sum_of_negative_numbers << endl;
 	cout << "Product of elements that are between min and max elements: " << product_min_btw_max << endl;
