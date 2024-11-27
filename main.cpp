@@ -140,8 +140,8 @@ int main()
 	}
 
 	// cout
-	/*cout << endl << min_number_index << " " << max_number_index << endl;
-	*/cout << negative_numbers_indexes.first << " " << negative_numbers_indexes.second << endl;
+	//cout << endl << min_number_index << " " << max_number_index << endl;
+	//cout << negative_numbers_indexes.first << " " << negative_numbers_indexes.second << endl;
 
 	cout << endl << endl;
 	cout << "The sum of negative numbers: " << sum_of_negative_numbers << endl;
