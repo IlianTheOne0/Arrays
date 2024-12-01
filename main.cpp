@@ -149,7 +149,7 @@ int main()
 	cout << "Product of elements with even numbers: " << product_even_indexes << endl;
 	cout << "Sum of the elements between the first and last negative elements: " << sum_first_btw_last_negative << endl;
 
-	// defult
+	// default
 	_getch();
 	return 0;
 }
